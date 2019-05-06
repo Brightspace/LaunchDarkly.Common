@@ -1,8 +1,5 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("LaunchDarkly.Client")]
-[assembly: InternalsVisibleTo("LaunchDarkly.Tests")]
-
 [assembly: InternalsVisibleTo("LaunchDarkly.Common.Tests")]
 [assembly: InternalsVisibleTo("LaunchDarkly.Xamarin")]
 [assembly: InternalsVisibleTo("LaunchDarkly.Xamarin.Tests")]
