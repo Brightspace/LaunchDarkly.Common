@@ -6,7 +6,7 @@
     <DebugType>portable</DebugType>
     <AssemblyName>LaunchDarkly.CommonSdk</AssemblyName>
     <OutputType>Library</OutputType>
-    <PackageId>LaunchDarkly.CommonSdk</PackageId>
+    <PackageId>D2L.LaunchDarkly.CommonSdk</PackageId>
     <Description>LaunchDarkly common code for .NET and Xamarin clients</Description>
     <Copyright>Copyright 2018 LaunchDarkly</Copyright>
   </PropertyGroup>
