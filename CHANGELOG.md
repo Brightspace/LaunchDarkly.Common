@@ -1,6 +1,112 @@
 # Change log
 
-For full release notes for the projects that depend on this project, see their respective changelogs. This file describes changes only to the common code. This project adheres to [Semantic Versioning](http://semver.org).
+All notable changes to `LaunchDarkly.CommonSdk` will be documented in this file. For full release notes for the projects that depend on this project, see their respective changelogs. This file describes changes only to the common code. This project adheres to [Semantic Versioning](http://semver.org).
+
+## [4.0.1] - 2019-09-13
+_The 4.0.0 release was broken._
+
+### Added:
+- `LdValue` now has methods for converting to and from complex types (list, dictionary).
+
+### Changed:
+- `ImmutableJsonValue` is now called `LdValue`.
+- All public APIs now use `ImmutableJsonValue` instead of `JToken`.
+ 
+### Removed:
+- Public `ImmutableJsonValue` methods and properties that refer to `JToken`, `JObject`, or `JArray`.
+
+## [3.1.0] - 2019-08-30
+### Added:
+- `SetOffline` method in `IEventProcessor`/`DefaultEventProcessor`.
+- XML documentation comments are now included in the package for all target frameworks. Previously they were only included for .NET Standard 1.4.
+
+## [3.0.0] - 2019-08-09
+### Added:
+- `User.Builder` provides a fluent builder pattern for constructing `User` objects. This is now the only method for building a user if you want to set any properties other than the `Key`.
+- The `ImmutableJsonValue` type provides a wrapper for the Newtonsoft.Json types that prevents accidentally modifying JSON object properties or array values that are shared by other objects.
+- Helper type `ValueType`/`ValueTypes` for use by the SDK `Variation` methods.
+- Internal interfaces for configuring specific components, like `IEventProcessorConfiguration`. These replace `IBaseConfiguration`.
+
+### Changed:
+- `User` objects are now immutable.
+- In `User`, `IpAddress` has been renamed to `IPAddress` (standard .NET capitalization for two-letter acronyms).
+- Custom attributes in `User.Custom` now use the type `ImmutableJsonValue` instead of `JToken`.
+- Uses of mutable `IDictionary` and `ISet` in the configuration and user objects have been changed to immutable types.
+
+### Removed:
+- `UserExtensions` (use `User.Builder`).
+- `User` constructors (use `User.WithKey` or `User.Builder`).
+- `User` property setters.
+- `IBaseConfiguration` and `ICommonLdClient` interfaces.
+
+### Fixed:
+- No longer assumes that we are overriding the `HttpMessageHandler` (if it is null in the configuration, just use the default `HttpClient` constructor). This is important for Xamarin.
+
+## [2.6.1] - 2019-09-12
+### Fixed:
+- A packaging error made the `LaunchDarkly.CommonSdk.StrongName` package unusable in 2.6.0.
+
+## [2.6.0] - 2019-09-12
+### Added:
+- Value type `LdValue`, to be used in place of `JToken` whenever possible.
+
+### Changed:
+- All event-related code except for public properties now uses `LdValue`.
+
+### Removed:
+- Internal helper type `ValueType`, unnecessary now because we can use `LdValue.Convert`.
+
+## [2.5.1] - 2019-08-30
+### Fixed:
+- Many improvements to XML documentation comments.
+
+## [2.5.0] - 2019-08-30
+### Added:
+- Internal helper types `ValueType` and `ValueTypes`.
+- XML documentation comments are now included in the package for all target frameworks. Previously they were only included for .NET Standard 1.4.
+
+### Changed:
+- Internal types are now sealed.
+- Changed some internal classes to structs for efficiency.
+
+### Deprecated:
+- `IBaseConfiguration` and `ICommonLdClient` interfaces.
+
+## [2.4.0] - 2019-07-31
+### Added:
+- `IBaseConfiguration.EventCapacity` and `IBaseConfiguration.EventFlushInterval`.
+- `UserBuilder.Key` setter.
+
+### Deprecated:
+- `IBaseConfiguration.SamplingInterval`.
+- `IBaseConfiguration.EventQueueCapacity` (now a synonym for `EventCapacity`).
+- `IBaseConfiguration.EventQueueFrequency` (now a synonym for `EventFlushInterval`).
+
+## [2.3.0] - 2019-07-23
+### Deprecated:
+- `User` constructors.
+- `User.Custom` and `User.PrivateAttributeNames` will be changed to immutable collections in the future.
+
+## [2.2.0] - 2019-07-23
+### Added:
+- `User.Builder` provides a fluent builder pattern for constructing `User` objects. This is now the preferred method for building a user, rather than setting `User` properties directly or using `UserExtension` methods like `AndName()` that modify the existing user object.
+- `User.IPAddress` is equivalent to `User.IpAddress`, but has the standard .NET capitalization for two-letter acronyms.
+
+### Deprecated:
+- `User.IpAddress` (use `IPAddress`).
+- All `UserExtension` methods are now deprecated. The setters for all `User` properties should also be considered deprecated, although C# does not allow these to be marked with `[Obsolete]`.
+
+## [2.1.2] - 2019-05-10
+### Fixed:
+- Fixed a build error that caused classes to be omitted from `LaunchDarkly.CommonSdk.StrongName`.
+
+## [2.1.1] - 2019-05-10
+### Changed:
+- The package and assembly name are now `LaunchDarkly.CommonSdk`, and the `InternalsVisibleTo` directives now refer to `LaunchDarkly.ServerSdk` and `LaunchDarkly.XamarinSdk`. There are no other changes. All future releases of the LaunchDarkly server-side .NET SDK and client-side Xamarin SDK will use the new package names, and no further updates of the old `LaunchDarkly.Common` package will be published.
+
+## [2.1.0] - 2019-04-16
+### Added:
+- Added support for planned future LaunchDarkly features related to analytics events and experimentation (metric values).
 
 ## [2.0.0] - 2019-03-26
 ### Added:
