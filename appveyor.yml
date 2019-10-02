@@ -9,14 +9,14 @@ before_build:
   - dotnet restore
 
 build_script:
-  - dotnet build src\LaunchDarkly.Common\LaunchDarkly.Common.csproj
+  - dotnet build src\LaunchDarkly.CommonSdk\LaunchDarkly.CommonSdk.csproj
 
 after_build:
-  - dotnet pack src\LaunchDarkly.Common\LaunchDarkly.Common.csproj
+  - dotnet pack src\LaunchDarkly.CommonSdk\LaunchDarkly.CommonSdk.csproj
 
 test_script:
-  - dotnet test test\LaunchDarkly.Common.Tests\LaunchDarkly.Common.Tests.csproj
+  - dotnet test test\LaunchDarkly.CommonSdk.Tests\LaunchDarkly.CommonSdk.Tests.csproj
 
 artifacts:
-  - path: 'src\LaunchDarkly.Common\bin\**\*.nupkg'
+  - path: 'src\LaunchDarkly.CommonSdk\bin\**\*.nupkg'
     name: Nuget
