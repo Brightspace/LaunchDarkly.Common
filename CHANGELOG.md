@@ -1,11 +1,39 @@
 # Change log
 
-For full release notes for the projects that depend on this project, see their respective changelogs. This file describes changes only to the common code. This project adheres to [Semantic Versioning](http://semver.org).
+All notable changes to the LaunchDarkly.CommonSdk package will be documented in this file. For full release notes for the projects that depend on this project, see their respective changelogs. This file describes changes only to the common code. This project adheres to [Semantic Versioning](http://semver.org).
+
+## [2.9.2] - 2019-11-12
+### Fixed:
+- `LdValue.Equals()` incorrectly returned true for object (dictionary) values that were not equal.
+- Summary events incorrectly had `unknown:true` for all evaluation errors, rather than just for "flag not found" errors (bug introduced in 2.9.0, not used in any current SDK).
+
+## [2.9.1] - 2019-11-08
+### Fixed:
+- Fixed an exception when serializing user custom attributes in events (bug in 2.9.0).
+
+## [2.9.0] - 2019-11-08
+### Added:
+- `EvaluationReason` static methods and properties for creating reason instances.
+- `LdValue` helpers for dealing with array/object values, without having to use an intermediate `List` or `Dictionary`: `BuildArray`, `BuildObject`, `Count`, `Get`.
+- `LdValue.Parse()`. It is also possible to use `Newtonsoft.Json.JsonConvert` to parse or serialize `LdValue`, but since the implementation may change in the future, using the type's own methods is preferable.
+
+### Changed:
+- `EvaluationReason` properties all exist on the base class now, so for instance you do not need to cast to `RuleMatch` to get the `RuleId` property. This is in preparation for a future API change in which `EvaluationReason` will become a struct instead of a base class.
+
+### Fixed:
+- Improved memory usage and performance when processing analytics events: the SDK now encodes event data to JSON directly, instead of creating intermediate objects and serializing them via reflection.
+
+### Deprecated:
+- `EvaluationReason` subclasses. Use only the base class properties and methods to ensure compatibility with future versions.
+
+## [2.8.0] - 2019-10-10
+### Added:
+- Added `LaunchDarkly.Logging.ConsoleAdapter` as a convenience for quickly enabling console logging; this is equivalent to `Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter`, but the latter is not available on some platforms.
 
 ## [2.7.0] - 2019-10-03
 ### Added:
 - `IUserBuilder.AnonymousOptional` allows setting the `Anonymous` property to `null` (necessary for consistency with other SDKs). See note about this under Fixed.
- 
+
 ### Fixed:
 - `IUserBuilder` was incorrectly setting the user's `Anonymous` property to `null` even if it had been explicitly set to `false`. Null and false behave the same in terms of LaunchDarkly's user indexing behavior, but currently it is possible to create a feature flag rule that treats them differently. So `IUserBuilder.Anonymous(false)` now correctly sets it to `false`, just as the deprecated method `UserExtensions.WithAnonymous(false)` would.
 - `LdValue.Convert.Long` was mistakenly converting to an `int` rather than a `long`. ([#32](https://github.com/launchdarkly/dotnet-sdk-common/issues/32))
