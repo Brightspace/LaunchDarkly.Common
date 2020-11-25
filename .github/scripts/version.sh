@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eu
 
+output_path=$1
 git_ref=$GITHUB_REF
 git_run=$GITHUB_RUN_NUMBER
 git_sha=$GITHUB_SHA
@@ -17,7 +18,7 @@ fi
 version="$version_prefix$version_suffix"
 informational_version="$version+$git_sha"
 
-cat <<EOT > VersionInfo.props
+cat <<EOT > $output_path
 <Project>
 	<PropertyGroup>
 		<Version>$version</Version>
@@ -29,4 +30,4 @@ cat <<EOT > VersionInfo.props
 </Project>
 EOT
 
-cat VersionInfo.props
+cat $output_path

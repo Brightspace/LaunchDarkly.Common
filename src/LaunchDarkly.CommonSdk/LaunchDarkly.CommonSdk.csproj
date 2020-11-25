@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="VersionInfo.props" />
   <PropertyGroup Condition=" '$(Version)' == '' ">
     <Version>2.9.2</Version>
   </PropertyGroup>
