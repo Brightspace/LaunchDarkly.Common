@@ -29,6 +29,9 @@ jobs:
           - name: dotnet build
             run: dotnet build --configuration Release src\LaunchDarkly.CommonSdk\LaunchDarkly.CommonSdk.csproj
 
+          - name: dotnet build
+            run: dotnet build --configuration Release test\LaunchDarkly.CommonSdk.Tests\LaunchDarkly.CommonSdk.Tests.csproj
+
           - name: dotnet test
             run: dotnet test --configuration Release --no-build test\LaunchDarkly.CommonSdk.Tests\LaunchDarkly.CommonSdk.Tests.csproj
 
