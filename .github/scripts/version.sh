@@ -24,7 +24,6 @@ cat <<EOT > VersionInfo.props
 		<AssemblyVersion>$version</AssemblyVersion>
 		<FileVersion>$version</FileVersion>
 		<InformationalVersion>$informational_version</InformationalVersion>
-		<RepositoryBranch>$git_ref</RepositoryBranch>
 		<RepositoryCommit>$git_sha</RepositoryCommit>
 	</PropertyGroup>
 </Project>
