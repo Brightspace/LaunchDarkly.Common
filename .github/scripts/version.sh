@@ -20,9 +20,9 @@ informational_version="$version+$git_sha"
 cat <<EOT > VersionInfo.props
 <Project>
 	<PropertyGroup>
-		<Version>$version</Version>
-		<AssemblyVersion>$version</AssemblyVersion>
-		<FileVersion>$version</FileVersion>
+		<Version>$version_prefix</Version>
+		<AssemblyVersion>$version_prefix</AssemblyVersion>
+		<FileVersion>$version_prefix</FileVersion>
 		<InformationalVersion>$informational_version</InformationalVersion>
 		<RepositoryCommit>$git_sha</RepositoryCommit>
 	</PropertyGroup>
