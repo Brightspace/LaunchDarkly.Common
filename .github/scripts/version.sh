@@ -6,9 +6,9 @@ git_run=$GITHUB_RUN_NUMBER
 git_sha=$GITHUB_SHA
 version_prefix=$VERSION_PREFIX
 
-if [ $git_ref -eq "refs/tags/v$version_prefix" ]; then
+if [ "$git_ref" -eq "refs/tags/v$version_prefix" ]; then
 	version_suffix=""
-elif [ $git_ref -eq "refs/heads/main" ]; then
+elif [ "$git_ref" -eq "refs/heads/main" ]; then
 	version_suffix="-rc.$git_run"
 else
 	version_suffix="-alpha.$git_run"
