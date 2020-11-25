@@ -17,7 +17,7 @@ fi
 version="$version_prefix$version_suffix"
 informational_version="$version+$git_sha"
 
-cat <<EOT >> VersionInfo.props
+cat <<EOT > VersionInfo.props
 <Project>
 	<PropertyGroup>
 		<Version>$version</Version>

@@ -2,15 +2,4 @@
 	<PropertyGroup>
 		<Version>0.0.0-dev</Version>
 	</PropertyGroup>
-</Project><Project>
-	<PropertyGroup>
-		<VersionPrefix>0.0.2</VersionPrefix>
-		<VersionSuffix>rc.25</VersionSuffix>
-		<Version>0.0.2-rc.25</Version>
-		<AssemblyVersion>0.0.0.0</AssemblyVersion>
-		<FileVersion>0.0.2.25</FileVersion>
-		<InformationalVersion>0.0.2-rc.25+36be4db55be387a18d9be6f819dc8b773e777f01</InformationalVersion>
-		<RepositoryBranch>master</RepositoryBranch>
-		<RepositoryCommit>36be4db55be387a18d9be6f819dc8b773e777f01</RepositoryCommit>
-	</PropertyGroup>
 </Project>
