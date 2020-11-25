@@ -17,11 +17,8 @@ jobs:
             with:
                 dotnet-version: 3.1.x
 
-          - name: dotnet tool restore
-            run: dotnet tool restore
-
-          - name: Generate version properties
-            run: dotnet ci-version-properties --output VersionInfo.props && cat VersionInfo.props
+          - name: Versioning
+            run: .github/scripts/version.sh
 
           - name: dotnet restore
             run: dotnet restore
