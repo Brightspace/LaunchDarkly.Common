@@ -9,17 +9,16 @@ version_prefix=$VERSION_PREFIX
 
 if [ "$git_ref" = "refs/tags/v$version_prefix" ]; then
 	version_suffix=""
-	repository_branch=""
 elif [ "$git_ref" = "refs/heads/main" ]; then
 	version_suffix="-rc.$git_run"
-	repository_branch="main"
 else
 	version_suffix="-alpha.$git_run"
-	if [ "$git_ref" =~ "^refs/heads/.+" ]; then
-		repository_branch=${git_ref,11}
-	else
-		repository_branch=""
-	fi
+fi
+
+if [ "${git_ref:0:11}" = "refs/heads/" ]; then
+	repository_branch=${git_ref:11}
+else
+	repository_branch=""
 fi
 
 version="$version_prefix$version_suffix"
