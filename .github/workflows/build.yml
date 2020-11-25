@@ -1,0 +1,45 @@
+name: build
+on: [push]
+
+env:
+    VERSION_PREFIX: "2.9.2"
+
+jobs:
+    build:
+        runs-on: windows-latest
+
+        steps:
+
+          - uses: Brightspace/third-party-actions@actions/checkout
+
+          - name: Setup .NET Core
+            uses:  Brightspace/third-party-actions@actions/setup-dotnet
+            with:
+                dotnet-version: 3.1.x
+
+          - name: dotnet tool restore
+            run: dotnet tool restore
+
+          - name: Generate version properties
+            run: dotnet ci-version-properties --output VersionInfo.props && cat VersionInfo.props
+
+          - name: dotnet restore
+            run: dotnet restore
+
+          - name: dotnet build
+            run: dotnet build --configuration Release src\LaunchDarkly.CommonSdk\LaunchDarkly.CommonSdk.csproj
+
+          - name: dotnet test
+            run: dotnet test --configuration Release --no-build test\LaunchDarkly.CommonSdk.Tests\LaunchDarkly.CommonSdk.Tests.csproj
+
+          - name: dotnet pack
+            run: dotnet pack --configuration Release --no-build src\LaunchDarkly.CommonSdk\LaunchDarkly.CommonSdk.csproj
+
+          - name: Copy *.nuget to dist/
+            run: mkdir dist/ && cp src/LaunchDarkly.CommonSdk/bin/Release/*.nupkg dist/
+
+          - name: Archive dist/
+            uses: actions/upload-artifact@v1
+            with:
+                name: dist
+                path: dist/
