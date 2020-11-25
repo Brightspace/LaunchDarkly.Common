@@ -3,7 +3,7 @@
     <Version>2.9.2</Version>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.4;netstandard1.6;netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageLicenseUrl>https://raw.githubusercontent.com/launchdarkly/dotnet-sdk-common/master/LICENSE</PackageLicenseUrl>
     <DebugType>portable</DebugType>
     <AssemblyName>LaunchDarkly.CommonSdk</AssemblyName>
