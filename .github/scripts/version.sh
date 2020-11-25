@@ -20,7 +20,7 @@ informational_version="$version+$git_sha"
 cat <<EOT > VersionInfo.props
 <Project>
 	<PropertyGroup>
-		<Version>$version_prefix</Version>
+		<Version>$version</Version>
 		<AssemblyVersion>$version_prefix</AssemblyVersion>
 		<FileVersion>$version_prefix</FileVersion>
 		<InformationalVersion>$informational_version</InformationalVersion>
