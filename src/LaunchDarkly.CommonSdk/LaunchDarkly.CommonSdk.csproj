@@ -1,8 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="VersionInfo.props" />
-  <PropertyGroup Condition=" '$(Version)' == '' ">
-    <Version>2.9.2</Version>
-  </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <PackageLicenseUrl>https://raw.githubusercontent.com/launchdarkly/dotnet-sdk-common/master/LICENSE</PackageLicenseUrl>
